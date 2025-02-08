@@ -53,7 +53,7 @@ function uploadToCloudinary(event) {
       .then((data) => {
         if (data.secure_url) {
           saveImageLocally(data.secure_url);
-          displayImages(); // Refresh gallery
+          fetchImages(); // Refresh gallery
         } else {
           throw new Error("Unexpected response from server.");
         }
@@ -89,23 +89,6 @@ function showError(message) {
   errorMsg.classList.add("error-message");
   errorMsg.textContent = message;
   errorBox.appendChild(errorMsg);
-}
-
-// Function to Display All Uploaded Images
-function displayImages() {
-  const gallery = document.getElementById("gallery");
-  gallery.innerHTML = ""; // Clear previous images
-  let uploadedImages = JSON.parse(localStorage.getItem("uploadedImages")) || [];
-
-  uploadedImages.forEach((url) => {
-    const img = document.createElement("img");
-    img.src = url;
-    img.style.width = "150px";
-    img.style.margin = "10px";
-    img.style.borderRadius = "10px";
-    img.style.boxShadow = "0px 4px 6px rgba(0, 0, 0, 0.1)";
-    gallery.appendChild(img);
-  });
 }
 
 // Load images on page load
