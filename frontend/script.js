@@ -110,3 +110,36 @@ function displayImages() {
 
 // Load images on page load
 document.addEventListener("DOMContentLoaded", displayImages);
+
+const BACKEND_URL = "http://localhost:5000/api/get-images"; // Change if deploying
+
+async function fetchImages() {
+  try {
+    const response = await fetch(BACKEND_URL);
+    if (!response.ok) throw new Error("Failed to load images.");
+
+    const data = await response.json();
+    displayImages(data);
+  } catch (error) {
+    console.error("Error fetching images:", error);
+    document.getElementById("gallery").innerHTML =
+      "<p>Failed to load images.</p>";
+  }
+}
+
+// Function to Display Images in Gallery
+function displayImages(images) {
+  const gallery = document.getElementById("gallery");
+  gallery.innerHTML = ""; // Clear existing images
+
+  images.forEach((image) => {
+    const img = document.createElement("img");
+    img.src = image.secure_url;
+    img.alt = "Uploaded Image";
+    img.classList.add("gallery-img");
+    gallery.appendChild(img);
+  });
+}
+
+// Load images on page load
+document.addEventListener("DOMContentLoaded", fetchImages);

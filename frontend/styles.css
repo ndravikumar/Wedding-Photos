@@ -118,3 +118,19 @@ h1 {
 .image-gallery img:hover {
   transform: scale(1.05);
 }
+
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+.gallery-img {
+  width: 150px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+.gallery-img:hover {
+  transform: scale(1.05);
+}
