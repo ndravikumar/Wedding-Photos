@@ -129,16 +129,22 @@ async function fetchImages() {
 
 // Function to Display Images in Gallery
 function displayImages(images) {
-  const gallery = document.getElementById("gallery");
-  gallery.innerHTML = ""; // Clear existing images
+  if (!images || images.length === 0) {
+    document.getElementById("gallery").innerHTML = "<p>No images found.</p>";
+    return;
+  }
+  if (images.length > 0) {
+    const gallery = document.getElementById("gallery");
+    gallery.innerHTML = ""; // Clear existing images
 
-  images.forEach((image) => {
-    const img = document.createElement("img");
-    img.src = image.secure_url;
-    img.alt = "Uploaded Image";
-    img.classList.add("gallery-img");
-    gallery.appendChild(img);
-  });
+    images.forEach((image) => {
+      const img = document.createElement("img");
+      img.src = image.secure_url;
+      img.alt = "Uploaded Image";
+      img.classList.add("gallery-img");
+      gallery.appendChild(img);
+    });
+  }
 }
 
 // Load images on page load
