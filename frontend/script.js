@@ -111,7 +111,7 @@ function displayImages() {
 // Load images on page load
 document.addEventListener("DOMContentLoaded", displayImages);
 
-const BACKEND_URL = "https://wedding-photos-2qnd.onrender.com/api/get-images"; // Change if deploying
+const BACKEND_URL = "https://wedding-photos-akay.onrender.com/api/get-images"; // Change if deploying
 
 async function fetchImages() {
   try {
